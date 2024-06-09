@@ -35,20 +35,24 @@ docker-compose up --build
 docker-compose --profile random up --build
 ```
 
-## Acceder a la Aplicación
-Accede a la aplicación Laravel en el navegador: http://devops.test
-Si se activa, accede al servicio Random HTTP: http://devops.test/thiio
-
 ## Configuración Adicional
 Archivo Hosts
 Para acceder a devops.test en tu navegador, asegúrate de agregar la siguiente línea a tu archivo hosts:
+```sh
 127.0.0.1 devops.test
+```
 
 ## Variables de Entorno
 - Laravel .env: Puedes definir variables de entorno específicas de Laravel en el archivo .env ubicado en el directorio raíz del proyecto Laravel.
-- Variables de Entorno Globales: Las variables de entorno globales para la configuración del entorno Docker se pueden definir en el archivo .env ubicado en el directorio raíz del proyecto, aqui se configura "NGINX_CONF_FILE", el cual puede tener los archivos de configuración
+- Variables de Entorno Globales: Las variables de entorno globales para la configuración del entorno Docker se pueden definir en el archivo .env ubicado en el directorio raíz del proyecto, aqui se configura "NGINX_CONF_FILE", el cual puede tener los archivos de configuración, default o default with  random, para activar ek servicio random http:
+```sh
    - default_with_random.conf
    - default.conf
+```
+
+## Acceder a la Aplicación
+Accede a la aplicación Laravel en el navegador: http://devops.test
+Si se activa, accede al servicio Random HTTP: http://devops.test/thiio
 
 ## Problemas Comunes
 - Configuración Incorrecta de Docker, ya sea que necesites iniciar sesion o descargar las imagenes por separado con los siguientes comandos.
