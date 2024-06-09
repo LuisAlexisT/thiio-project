@@ -53,6 +53,14 @@ To access devops.test in your browser, make sure to add the following line to yo
 ## Accessing the Application
 Access the Laravel application in the browser: http://devops.test
 If activated, access the Random HTTP service: http://devops.test/thiio
+To run the application you need to run these commands depending on the configuration you have chosen in the global environment variables of the project.
+```sh
+   # Start Containers without the random service
+   docker-compose up --build
+
+   # Start Containers with the random service
+   docker-compose --profile random up --build
+```
 
 ## Common Issues
 - Incorrect Docker Configuration, whether you need to log in or download the images separately using the following commands.
