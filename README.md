@@ -33,19 +33,33 @@ docker-compose up --build
 
 # Levantar los Contenedores con el servicio random
 docker-compose --profile random up --build
+```
 
-Acceder a la Aplicación
+## Acceder a la Aplicación
 Accede a la aplicación Laravel en el navegador: http://devops.test
 Si se activa, accede al servicio Random HTTP: http://devops.test/thiio
-Configuración Adicional
+
+## Configuración Adicional
 Archivo Hosts
 Para acceder a devops.test en tu navegador, asegúrate de agregar la siguiente línea a tu archivo hosts:
 127.0.0.1 devops.test
-Variables de Entorno
-Laravel .env: Puedes definir variables de entorno específicas de Laravel en el archivo .env ubicado en el directorio raíz del proyecto Laravel.
-Variables de Entorno Globales: Las variables de entorno globales para la configuración del entorno Docker se pueden definir en el archivo .env ubicado en el directorio raíz del proyecto.
-Problemas Comunes
-# Configuración Incorrecta de Docker
-# Creación de App Key de Laravel
-Contacto
+
+## Variables de Entorno
+- Laravel .env: Puedes definir variables de entorno específicas de Laravel en el archivo .env ubicado en el directorio raíz del proyecto Laravel.
+- Variables de Entorno Globales: Las variables de entorno globales para la configuración del entorno Docker se pueden definir en el archivo .env ubicado en el directorio raíz del proyecto, aqui se configura "NGINX_CONF_FILE", el cual puede tener los archivos de configuración
+   - default_with_random.conf
+   - default.conf
+
+## Problemas Comunes
+- Configuración Incorrecta de Docker, ya sea que necesites iniciar sesion o descargar las imagenes por separado con los siguientes comandos.
+```sh
+   docker pull nginx:alpine
+   docker pull mysql:5.7
+   docker build -t laravel ./laravel
+```
+- Creación de App Key de Laravel, solo necesitas ejecutar el siguiente comando dentro de la carpeta del proyecto de laravel.
+```sh
+   php artisan key:generate
+```
+## Contacto
 Si tienes alguna pregunta o encuentras algún problema, por favor contacta a LuisAlexisT en GitHub o envía un correo electrónico a alextepe27@gmail.com.
