@@ -1,0 +1,54 @@
+version: '3.9'
+
+services:
+  laravel:
+    build:
+      context: ./laravel
+    container_name: laravel
+    restart: unless-stopped
+    volumes:
+      - ./laravel:/var/www
+    environment:
+      - DB_HOST=mysql
+      - DB_DATABASE=laravel
+      - DB_USERNAME=root
+      - DB_PASSWORD=root
+    depends_on:
+      - mysql
+
+  nginx:
+    image: nginx:alpine
+    container_name: nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/${NGINX_CONF_FILE}:/etc/nginx/conf.d/default.conf
+      - ./laravel:/var/www
+    depends_on:
+      - laravel
+    environment:
+      - NGINX_CONF_FILE
+
+  mysql:
+    image: mysql:5.7
+    container_name: mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: laravel
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  random_http_service:
+    build:
+      context: ./random_http_service
+    container_name: random_http_service
+    profiles:
+      - random
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+
+volumes:
+  mysql_data:
